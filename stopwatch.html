@@ -1,0 +1,106 @@
+<html>
+    <head>
+         <title> Stop Watch </title>
+         <style>
+            label {
+                font-size: 200px;
+                font-weight: bold;
+            }
+            #b1, #b2, #b3{
+                height: 90px;
+                width: 180px;
+                font-size: 40px;
+            }
+            body{
+                padding: 200px; 
+                background-color: rgb(0, 0, 0);
+                color: white;
+            }
+         </style>
+    
+    </head>
+    <body> 
+        <center>
+        <label for="hr" id = hr> 00 </label> <label> : </label>
+        <label for="min" id = min> 00 </label> <label> : </label>
+        <label for="sec" id = sec> 00 </label> <label> : </label>
+        <label for="mili" id = mili> 00 </label>
+            <br> <br> <br>
+        <input type="button" value="Start" onclick="start()" id="b1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="button" value="Stop" onclick="stop()" id="b2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="button" value="Clear" onclick="cleart()" id="b3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </center>
+
+        <script> 
+            var m = 0;
+            var s = 0;
+            var ms = 0;
+            var h = 0;
+            var b;
+            function timer(){
+                ms += 1;
+                if (ms < 10){
+                    document.getElementById("mili").innerHTML = "0"+ms;
+                }
+                else {
+                    document.getElementById("mili").innerHTML = ms;
+                }
+
+                if (ms >= 59){
+                    ms = 0;
+                    s += 1;
+                    if (s <10){
+                        document.getElementById("sec").innerHTML = "0"+s;
+                    }
+                    else {
+                        document.getElementById("sec").innerHTML = s;
+                    }
+
+                if (s >= 59){
+                    s = 0;
+                    m += 1;
+                    if (m < 10){
+                        document.getElementById("min").innerHTML = "0"+m;
+                    }
+                    else {
+                        document.getElementById("min").innerHTML = m;
+                    }
+                }
+
+                if (m >= 59){
+                    m = 0;
+                    h += 1;
+                    if (h < 10){
+                        document.getElementById("hr").innerHTML = "0"+h;
+                    }
+                    else {
+                        document.getElementById("hr").innerHTML = h;
+                    }
+                }
+                }
+            }
+            function start(){
+                b = setInterval(timer, 16.67);
+            }
+            function stop(){
+                clearInterval(b);
+            }
+            function cleart(){
+                clearInterval(b);
+                m = 0;
+                s = 0;
+                ms = 0;
+                h = 0;
+                document.getElementById("min").innerHTML = " 00 ";
+                document.getElementById("sec").innerHTML = " 00 ";
+                document.getElementById("mili").innerHTML = " 00 ";
+                document.getElementById("hr").innerHTML = " 00 ";
+            }
+/*           document.body.onkeyup = function(e){
+                if (e.key === " " || e.code === "Spacebar"){
+                   stop();
+                }
+            }*/
+        </script>
+    </body>
+</html>
